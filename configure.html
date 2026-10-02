@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ani.pm Hard Sub setup</title><style>body{font:17px system-ui;background:#101724;color:#e7edf8;max-width:700px;margin:64px auto;padding:24px;line-height:1.6}h1{line-height:1.2}label{display:block;font-weight:600}input{box-sizing:border-box;width:100%;padding:14px;background:#1f2b40;border:1px solid #758399;color:white;border-radius:8px;font:inherit}button{padding:12px 20px;margin:18px 12px 0 0;background:#b4e2d5;border:0;border-radius:8px;font:inherit;cursor:pointer}#status{white-space:pre-wrap;overflow-wrap:anywhere;color:#b4e2d5}small{color:#aebacd}</style><h1>ani.pm Hard Sub setup</h1><p>Upload the module folder to your public file host. Then enter its raw folder URL below to configure the manifests.</p><label for="base">Raw folder URL</label><input id="base" type="url" placeholder="https://raw.githubusercontent.com/you/repo/main/anipm-hardsub/"><small>Use the folder containing anipm-hardsub.js. GitHub page links with /blob/ will not work.</small><p><button data-mode="hardsub">Download manifest</button></p><p id="status" role="status"></p><p>Replace the matching JSON file on your host with the downloaded version, then add its raw URL under Settings → Modules in Sora or Shirox.</p><small>This helper works offline and sends no network requests.</small><script>const manifests={"hardsub":{
+  "sourceName": "ani.pm (Hard Sub)",
+  "iconUrl": "https://ani.pm/favicon.ico",
+  "author": {
+    "name": "Custom module",
+    "icon": "https://ani.pm/favicon.ico"
+  },
+  "version": "1.0.0",
+  "language": "English (Hard SUB)",
+  "description": "Japanese audio with confirmed burned-in English subtitles only. No soft-sub or dub fallback.",
+  "baseUrl": "https://ani.pm/",
+  "streamType": "HLS",
+  "quality": "1080p",
+  "searchBaseUrl": "https://ani.pm/api/partner/v1/titles?q=%s&limit=30",
+  "scriptUrl": "https://YOUR-HOST/anipm-hardsub.js",
+  "type": "anime",
+  "downloadSupport": false,
+  "asyncJS": true,
+  "streamAsyncJS": true,
+  "softsub": false
+}};document.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{try{const raw=document.getElementById('base').value.trim();const url=new URL(raw);if(url.protocol!=='https:'||url.search||url.hash||url.pathname.includes('/blob/')||/\.(js|json)$/.test(url.pathname))throw Error('Enter an HTTPS raw folder URL with no query string or file name.');const base=url.href.replace(/\/$/,'')+'/';const mode=button.dataset.mode;const manifest=Object.assign({},manifests[mode],{scriptUrl:base+'anipm-hardsub.js'});const blob=new Blob([JSON.stringify(manifest,null,2)+'\n'],{type:'application/json'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='anipm-hardsub.json';link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000);document.getElementById('status').textContent='After uploading this JSON, import:\n'+base+'anipm-hardsub.json';}catch(error){document.getElementById('status').textContent=error.message;}}));</script></html>

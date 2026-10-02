@@ -1,0 +1,21 @@
+{
+  "sourceName": "ani.pm (Hard Sub)",
+  "iconUrl": "https://ani.pm/favicon.ico",
+  "author": {
+    "name": "Custom module",
+    "icon": "https://ani.pm/favicon.ico"
+  },
+  "version": "1.0.0",
+  "language": "English (Hard SUB)",
+  "description": "Japanese audio with confirmed burned-in English subtitles only. No soft-sub or dub fallback.",
+  "baseUrl": "https://ani.pm/",
+  "streamType": "HLS",
+  "quality": "1080p",
+  "searchBaseUrl": "https://ani.pm/api/partner/v1/titles?q=%s&limit=30",
+  "scriptUrl": "https://YOUR-HOST/anipm-hardsub.js",
+  "type": "anime",
+  "downloadSupport": false,
+  "asyncJS": true,
+  "streamAsyncJS": true,
+  "softsub": false
+}
