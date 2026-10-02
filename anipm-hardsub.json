@@ -12,7 +12,7 @@
   "streamType": "HLS",
   "quality": "1080p",
   "searchBaseUrl": "https://ani.pm/api/partner/v1/titles?q=%s&limit=30",
-  "scriptUrl": "https://YOUR-HOST/anipm-hardsub.js",
+  "scriptUrl": "https://raw.githubusercontent.com/Ouxyre/sora-sources/main/anipm-hardsub.js",
   "type": "anime",
   "downloadSupport": false,
   "asyncJS": true,
